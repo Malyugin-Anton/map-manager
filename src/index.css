@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  max-width: 990px;
+  margin: 0 auto;
+}
+
+.main {
+  padding-top: 30px;
+}
+
+.list {
+
+}
+
+.item {
+  margin-bottom: 20px;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.item-heading {
+  text-align: left;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  cursor: pointer;
+
+  transition: all .2s ease-in-out;
+  box-shadow: 0 0 0px #00000021;
+}
+
+.item-heading:hover,
+.item-heading.active {
+  box-shadow: 0 0 16px #00000021;
+}
+
+.item-icon-arrow.up {
+  transform: rotate(180deg);
+  transition: all .3 ease-in-out;
+}
+
+.item-heading h2 {
+  margin: 0;
+}
+
+.item-wrap {
+  /* display: none; */
+}
+
+.item-wrap.hide {
+  display: none;
+}
+
+.item-content {
+  padding: 0 15px;
+}
+
+.item-content-block {
+  text-align: left;
+}
+
+.item-content-block p {
+
+}
+
+.item-actions {
+  padding: 5px 15px;
+  border-top: 1px solid #0000003b;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-actions__btn-group {
+  display: flex;
+}
+
+.item-actions__btn {
+  margin-left: 10px;
+}
+
+.item-actions__btn:first-child {
+  margin-left: 0;
+}

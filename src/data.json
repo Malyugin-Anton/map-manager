@@ -1,0 +1,90 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "cityName": "Город 1",
+      "places": [
+        {
+          "id": "1",
+          "namePlace": "Место 1",
+          "аddress": "Город 1, ул. Улица, Дом 1",
+          "coordinate": {
+            "latitude": 11.11,
+            "longitude": 22.22
+          },
+          "contacts": {
+            "phone": [
+              "+7 999-111-11-11",
+              "+7 908-222-22-22"
+            ],
+            "email": [
+              "nameEmail1@mail.com",
+              "nameEmail2@mail.com"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "namePlace": "Место 2",
+          "аddress": "Город 2, ул. Улица, Дом 2",
+          "coordinate": {
+            "latitude": 33.33,
+            "longitude": 44.44
+          },
+          "contacts": {
+            "phone": [
+              "+7 999-333-33-33",
+              "+7 908-444-44-44"
+            ],
+            "email": [
+              "nameEmail3@mail.com",
+              "nameEmail4@mail.com"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "cityName": "Город 1",
+      "places": [
+        {
+          "id": "1",
+          "namePlace": "Место 3",
+          "аddress": "Город 3, ул. Улица, Дом 3",
+          "coordinate": {
+            "latitude": 11.11,
+            "longitude": 22.22
+          },
+          "contacts": {
+            "phone": [
+              "+7 999-111-11-11",
+              "+7 908-222-22-22"
+            ],
+            "email": [
+              "nameEmail2@mail.com"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "namePlace": "Место 4",
+          "аddress": "Город 4, ул. Улица, Дом 4",
+          "coordinate": {
+            "latitude": 33.33,
+            "longitude": 44.44
+          },
+          "contacts": {
+            "phone": [
+              "+7 999-333-33-33",
+              "+7 908-444-44-44"
+            ],
+            "email": [
+              "nameEmail3@mail.com"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

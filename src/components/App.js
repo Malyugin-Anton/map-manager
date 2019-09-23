@@ -1,52 +1,35 @@
 import React, { Component } from 'react';
-import { Row, Col, Input, Button } from 'antd';
-import firebase from '../config/firebase';
+import { connect } from 'react-redux'
+
+import { Empty } from 'antd'
 
 // components
-import List from './List';
+import List from './List'
+import Header from './Header'
+import FormAdd from './FormAdd'
+
 
 class App extends Component {
 
-  // Не удалять здесь я получаю доступ к данным от БД
-  // componentDidMount() {
-  //   const data = firebase.database().ref('data');
-
-  //   data.on('value', item => {
-  //     console.log(item.val());
-  //   })
-  // }
-
   render() {
-    const { data } = this.props.data;
+    const { data } = this.props;
+    console.log('APP - ', this.props)
 
     return (
       <div className="App">
-        <div className="header">
-          <Row>
-            <Col span={24}>
-              <h1>yandex manager</h1>
-            </Col>
-          </Row>
-        </div>
-
-        <div className="form-add">
-          <Row gutter={16}>
-            <Col span={20}>
-              <Input size="large" placeholder="Введите город"/></Col>
-            <Col span={4}>
-              <Button type="primary" size="large" block>Добавить</Button>
-            </Col>
-          </Row>
-        </div>
+        <Header />
+        <FormAdd />
 
         <div className="main">
-          <List data={data} />
+          { data.length === 0 ? <Empty /> : <List data={data} /> }
         </div>
-
-        
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return { ...state }
+}
+
+export default connect(mapStateToProps, null)(App)

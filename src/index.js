@@ -1,11 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
-import App from './components/App';
+// components
+import App from './components/App'
 
-import "antd/dist/antd.css";
-import './index.css';
+// Initial STORE
 
-import data from './data';
+import rootReducer from './store/reducers'
+import { getAllCities } from './store/actions'
 
-ReactDOM.render(<App data={data}/>, document.getElementById('root'));
+import "antd/dist/antd.css"
+import './index.css'
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+store.dispatch(getAllCities());
+// store.dispatch(addCity());
+
+store.subscribe(() => console.log('subscribe - ', store.getState()))
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>, 
+  document.getElementById('root')
+);

@@ -6,14 +6,15 @@ import Item from './Item';
 class List extends Component {
   render() {
     const { data } = this.props;
-    console.log('LIST data - ', data);
-    
+    console.log('LIST ', data)
 
     return (
       <ul className="list">
-        {data.map((el, idx) => {
-          return <Item key={idx} data={el}/>
-        })}
+        {
+          data.map((el, idx) => {
+            return <Item key={idx} data={el}/>
+          })
+        }
       </ul>
     )
   }

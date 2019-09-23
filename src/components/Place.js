@@ -4,10 +4,9 @@ import { Button, Divider } from 'antd';
 class Place extends Component {
   render() {
     const { namePlace, аddress, coordinate, contacts } = this.props.place;
-    const visible = this.props.visible;
 
     return (
-      <div className={`item-wrap ${visible ? '' : 'hide'}`}>
+      <div className="item-inner">
         <div className="item-content">
           <div className="item-content-block">
             <Divider orientation="left">Место</Divider>

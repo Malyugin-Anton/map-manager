@@ -74,6 +74,14 @@ ul {
   display: none;
 }
 
+.item-btn {
+  margin: 20px auto;
+}
+
+.item-inner {
+
+}
+
 .item-content {
   padding: 0 15px;
 }
@@ -84,6 +92,19 @@ ul {
 
 .item-content-block p {
 
+}
+
+.item-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-group-label {
+  margin-bottom: 5px;
+}
+
+.item-group-input {
+  max-width: 300px;
 }
 
 .item-actions {

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Icon } from 'antd';
+import { Icon, Button } from 'antd';
 
 // component
 import Place from './Place';
+import AddPlaceForm from './AddPlaceForm'
 
 class Item extends Component {
   
   state = {
-    visible: false
+    visible: false,
+    showAddPlaceForm: false
   }
 
   onToggleItem = () => {
@@ -16,9 +18,15 @@ class Item extends Component {
     })
   }
 
+  onAddPlace = () => {
+    this.setState({
+      showAddPlaceForm: !this.state.showAddPlaceForm
+    })
+  }
+
   render() {
     const { cityName, places } = this.props.data;
-    const visible = this.state.visible;
+    const { visible, showAddPlaceForm } = this.state;
 
     return (
       <li className="item">
@@ -31,11 +39,25 @@ class Item extends Component {
           </div>
         </div>
 
-        {
-          places.map((place, idx) => {
-            return <Place {...this.state} key={idx} place={place}/>
-          })
-        }
+        {/* Надо немного продумать верстку */}
+        <div className={`item-wrap ${visible ? '' : 'hide'}`}>
+
+          <div className='item-btn'>
+            <Button onClick={this.onAddPlace} type="primary" size="large" block>
+              {showAddPlaceForm ? 'Скрыть форму' : 'Показать форму'}
+            </Button>
+          </div>
+
+          {
+            showAddPlaceForm ? <AddPlaceForm /> : ''
+          }
+
+          {
+            places.map((place, idx) => {
+              return <Place key={idx} place={place}/>
+            })
+          }
+        </div>
       </li>
     )
   }

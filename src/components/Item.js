@@ -25,6 +25,7 @@ class Item extends Component {
   }
 
   render() {
+    const cityId = this.props.cityId;
     const { cityName, places } = this.props.data;
     const { visible, showAddPlaceForm } = this.state;
 
@@ -49,7 +50,7 @@ class Item extends Component {
           </div>
 
           {
-            showAddPlaceForm ? <AddPlaceForm /> : ''
+            showAddPlaceForm ? <AddPlaceForm cityId={cityId}/> : ''
           }
 
           {

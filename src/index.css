@@ -107,6 +107,10 @@ ul {
   max-width: 300px;
 }
 
+.item-group-btn {
+  margin-top: 5px;
+}
+
 .item-actions {
   padding: 5px 15px;
   border-top: 1px solid #0000003b;

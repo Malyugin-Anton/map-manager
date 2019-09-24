@@ -6,19 +6,18 @@ import { Empty } from 'antd'
 // components
 import List from './List'
 import Header from './Header'
-import FormAdd from './FormAdd'
+import AddCityForm from './AddCityForm'
 
 
 class App extends Component {
 
   render() {
     const { data } = this.props;
-    console.log('APP - ', this.props)
 
     return (
       <div className="App">
         <Header />
-        <FormAdd />
+        <AddCityForm />
 
         <div className="main">
           { data.length === 0 ? <Empty /> : <List data={data} /> }

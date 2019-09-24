@@ -23,10 +23,10 @@ class Place extends Component {
           <div className="item-content-block">
             <Divider orientation="left">Контакты</Divider>
             <p>
-              Телефон: { contacts.phone.map((phone) => `${phone} `) }
+              Телефон: contacts.phone
             </p>
             <p>
-              Email: { contacts.email.map((email) => `${email} `) }
+              Email: contacts.email
             </p>
           </div>
           <div className="item-content-block">

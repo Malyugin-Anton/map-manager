@@ -8,12 +8,13 @@ import { addData } from '../store/actions'
 
 
 
-const FormAdd = ({ dispatch }) => {
+const AddCityForm = ({ dispatch }) => {
   let _cityName = ''
 
   const onClick = (e) => {
     e.preventDefault()
-    console.log('addCity ', _cityName)
+
+    
     dispatch(addData({
       cityName: _cityName,
       places: []
@@ -37,4 +38,4 @@ const FormAdd = ({ dispatch }) => {
   )
 }
 
-export default connect()(FormAdd)
+export default connect()(AddCityForm)

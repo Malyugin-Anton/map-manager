@@ -1,4 +1,4 @@
-import { GET_DATA, ADD_DATA, ADD_PLACE } from './types'
+import { GET_DATA, ADD_DATA, ADD_PLACE, DELETE_PLACE } from './types'
 import firebase from '../config/firebase'
 
 // actions
@@ -17,7 +17,6 @@ export const addDataSuccess = (data) => {
 };
 
 export const addPlaceSuccess = (data, cityId) => {
-  console.log('addPlaceSuccess - ', data);
   return {
     type: ADD_PLACE,
     data,
@@ -25,7 +24,14 @@ export const addPlaceSuccess = (data, cityId) => {
   }
 }
 
- 
+export const deletePlaceSuccess = (idPlace, cityId) => {
+  return {
+    type: DELETE_PLACE,
+    idPlace,
+    cityId
+  }
+}
+
 export const getAllCities = () => {
   return (dispatch) => {
     const db = firebase.firestore().collection("cities");
@@ -45,13 +51,13 @@ export const getAllCities = () => {
   };
 };
 
-export const addData = (data, id) => {
+export const addData = (data) => {
   return (dispatch) => {
     const db = firebase.firestore().collection("cities");
 
     db
-      .doc(id)
-      .set(data)
+      .doc(data.cityId)
+      .set(data.data)
       .then(() => {
         console.log('Added city Success')
         dispatch(addDataSuccess(data))
@@ -84,6 +90,34 @@ export const addPlace = (data, cityId) => {
           .then(() => {
             console.log('Added place Success')
             dispatch(addPlaceSuccess(data, cityId))
+          })
+      })
+  }
+}
+
+export const deletePlace = (idPlace, cityId) => {
+  return (dispatch) => {
+    const db = firebase.firestore().collection("cities");
+
+    let dbData = {};
+
+    // Читаем с базы то что у нас есть
+    db
+      .doc(cityId)
+      .get()
+      .then(doc => {
+        dbData = doc.data()
+
+        const filterPlace = dbData.places.filter(place => place.idPlace !== idPlace)
+        dbData.places = filterPlace;
+
+        // Записываем то что взяли с базы + наши дополнения
+        db
+          .doc(cityId)
+          .set(dbData)
+          .then(() => {
+            console.log('Deleted place Success')
+            dispatch(deletePlaceSuccess(idPlace, cityId))
           })
       })
   }

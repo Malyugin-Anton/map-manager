@@ -55,7 +55,7 @@ class Item extends Component {
 
           {
             places.map((place, idx) => {
-              return <Place key={idx} place={place}/>
+              return <Place key={idx} {...place} cityId={cityId}/>
             })
           }
         </div>

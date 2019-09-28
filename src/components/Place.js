@@ -1,41 +1,123 @@
-import React from 'react';
-import { Button, Divider } from 'antd';
-import { connect } from 'react-redux';
+import React from "react";
+import { Button, Divider, Input } from "antd";
+import { connect } from "react-redux";
 
-import { deletePlace } from '../store/actions'
+import { deletePlace, editPlace, visibleEditForm } from "../store/actions";
 
-const Place = ({ cityId, idPlace, namePlace, аddress, contacts, coordinate, onDeletePlace = f => f }) => {  
+const Place = ({
+  cityId,
+  placeId,
+  namePlace,
+  аddress,
+  contacts,
+  coordinate,
+  dispatch,
+  editPlaceForm
+}) => {
+  let _namePlace, _аddress, _phone, _email, _latitude, _longitude;
+
+  const onEditPlace = () => {
+    const place = {
+      placeId: placeId,
+      namePlace: _namePlace.state.value,
+      аddress: _аddress.state.value,
+      contacts: {
+        phone: _phone.state.value,
+        email: _email.state.value
+      },
+      coordinate: {
+        latitude: _latitude.state.value,
+        longitude: _longitude.state.value
+      }
+    };
+
+    _namePlace.handleReset();
+    _аddress.handleReset();
+    _phone.handleReset();
+    _email.handleReset();
+    _latitude.handleReset();
+    _longitude.handleReset();
+
+    dispatch(editPlace(place, cityId, placeId));
+    dispatch(visibleEditForm(!editPlaceForm));
+  };
+
+  const onDeletePlace = () => {
+    dispatch(deletePlace(placeId, cityId));
+  };
+
+  const onVisibleEditForm = () => {
+    dispatch(visibleEditForm(!editPlaceForm));
+  };
+
   return (
     <div className="item-inner">
       <div className="item-content">
         <div className="item-content-block">
           <Divider orientation="left">Место</Divider>
-          <p>
-            { namePlace }
-          </p>
+          {editPlaceForm ? (
+            <Input
+              defaultValue={namePlace}
+              ref={input => (_namePlace = input)}
+            />
+          ) : (
+            namePlace
+          )}
         </div>
         <div className="item-content-block">
           <Divider orientation="left">Адрес</Divider>
           <p>
-            { аddress }
+            {editPlaceForm ? (
+              <Input defaultValue={аddress} ref={input => (_аddress = input)} />
+            ) : (
+              аddress
+            )}
           </p>
         </div>
         <div className="item-content-block">
           <Divider orientation="left">Контакты</Divider>
           <p>
-            Телефон: { contacts.phone }
+            {editPlaceForm ? (
+              <Input
+                defaultValue={contacts.phone}
+                ref={input => (_phone = input)}
+              />
+            ) : (
+              `Телефон: ${contacts.phone}`
+            )}
           </p>
           <p>
-            Email: { contacts.email }
+            {editPlaceForm ? (
+              <Input
+                defaultValue={contacts.email}
+                ref={input => (_email = input)}
+              />
+            ) : (
+              `email: ${contacts.email}`
+            )}
           </p>
         </div>
         <div className="item-content-block">
           <Divider orientation="left">Координаты</Divider>
           <p>
-            Широта: { coordinate.latitude }
+            {editPlaceForm ? (
+              <Input
+                defaultValue={coordinate.latitude}
+                ref={input => (_latitude = input)}
+              />
+            ) : (
+              `Широта: ${coordinate.latitude}`
+            )}
           </p>
           <p>
-            Долгота: { coordinate.longitude }
+            {editPlaceForm ? (
+              <Input
+                defaultValue={coordinate.longitude}
+                ref={input => (_longitude = input)}
+              />
+            ) : (
+              `Долгота: ${coordinate.longitude}`
+            )}
           </p>
         </div>
       </div>
@@ -43,28 +125,39 @@ const Place = ({ cityId, idPlace, namePlace, аddress, contacts, coordinate, onD
       <div className="item-actions">
         <div className="item-actions__btn-group">
           <div className="item-actions__btn">
-            <Button icon="edit" size="large" />
+            <Button
+              icon="edit"
+              size="large"
+              onClick={() => onVisibleEditForm()}
+            />
           </div>
           <div className="item-actions__btn">
-            <Button type="danger" icon="delete" size="large" onClick={() => onDeletePlace(idPlace, cityId)}/>
+            <Button
+              type="danger"
+              icon="delete"
+              size="large"
+              onClick={() => onDeletePlace()}
+            />
           </div>
         </div>
 
         <div className="item-actions__btn-group">
           <div className="item-actions__btn">
-            <Button type="primary" icon="check" size="large" />
+            {editPlaceForm ? (
+              <Button
+                type="primary"
+                icon="check"
+                size="large"
+                onClick={() => onEditPlace()}
+              />
+            ) : null}
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default connect(
-  null,
-  dispatch => ({
-    onDeletePlace(idPlace, cityId) {
-      dispatch(deletePlace(idPlace, cityId))
-    }
-  })
-)(Place);
+export default connect(state => ({
+  editPlaceForm: state.editPlaceForm
+}))(Place);

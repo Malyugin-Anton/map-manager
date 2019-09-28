@@ -58,13 +58,13 @@ ul {
   box-shadow: 0 0 16px #00000021;
 }
 
-.item-icon-arrow.up {
-  transform: rotate(180deg);
-  transition: all .3 ease-in-out;
-}
-
 .item-heading h2 {
   margin: 0;
+}
+
+.item-heading .item-actions__btn-group {
+  margin-left: auto;
+  margin-right: 10px;
 }
 
 .item-wrap {
@@ -98,6 +98,20 @@ ul {
 .item-group {
   display: flex;
   flex-direction: column;
+}
+
+.item-group_inline {
+  flex-direction: row;
+  align-items: center;
+}
+
+.item-group_inline .item-group-label {
+  margin-bottom: 0;
+  margin-right: 20px;
+}
+
+.item-group_inline .item-group-input {
+  max-width: 100%;
 }
 
 .item-group-label {

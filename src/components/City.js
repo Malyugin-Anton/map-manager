@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
 import { Button, Input } from "antd";
 
 // component
@@ -8,12 +7,15 @@ import AddPlaceForm from "./AddPlaceForm";
 
 class Item extends Component {
   constructor(props) {
+    console.log('Item');
     super(props);
     this._cityName = "";
     this.dispatch = props.dispatch;
     this.cityId = props.cityId;
     this.onEditCity = props.onEditCity;
     this.onDeleteCity = props.onDeleteCity;
+    this.places = props.data.places;
+    this.cityName = props.data.cityName;
   }
 
   state = {
@@ -22,7 +24,7 @@ class Item extends Component {
     showAddPlaceForm: false
   };
 
-  onToggleItem = () => {
+  onToggleVisibleContent = () => {
     this.setState({
       visibleContent: !this.state.visibleContent
     });
@@ -34,14 +36,13 @@ class Item extends Component {
     });
   };
 
-  onToggleShowPlaceForm = () => {
+  onAddPlace = () => {
     this.setState({
       showAddPlaceForm: !this.state.showAddPlaceForm
     });
   };
 
   render() {
-    const { cityName, places } = this.props.data;
     const {
       visibleContent,
       visibleEditFormCity,
@@ -54,11 +55,11 @@ class Item extends Component {
           <h2>
             {visibleEditFormCity ? (
               <Input
-                defaultValue={cityName}
+                defaultValue={this.cityName}
                 ref={input => (this._cityName = input)}
               />
             ) : (
-              cityName
+              this.cityName
             )}
           </h2>
 
@@ -75,7 +76,7 @@ class Item extends Component {
                 type="danger"
                 icon="delete"
                 size="large"
-                onClick={() => this.onDeleteCity(this.cityId)}
+                onClick={() => this.dispatch(this.onDeleteCity(this.cityId))}
               />
             </div>
             <div className="item-actions__btn">
@@ -84,16 +85,13 @@ class Item extends Component {
                   type="primary"
                   icon="check"
                   size="large"
-                  onClick={() => {
-                    this.onEditCity(this.cityId, this._cityName.state.value)
-                    this.onVisibleEditCityForm()
-                  }}
+                  onClick={() => this.dispatch(this.onEditCity(this.cityId, this._cityName.state.value))}
                 />
               ) : null}
             </div>
           </div>
 
-          <div onClick={this.onToggleItem}>
+          <div onClick={this.onToggleVisibleContent}>
             {!visibleContent ? (
               <Button icon="down" size="large" />
             ) : (
@@ -104,14 +102,14 @@ class Item extends Component {
 
         <div className={`item-wrap ${visibleContent ? "" : "hide"}`}>
           <div className="item-btn">
-            <Button onClick={this.onToggleShowPlaceForm} type="primary" size="large" block>
+            <Button onClick={this.onAddPlace} type="primary" size="large" block>
               {showAddPlaceForm ? "Скрыть форму" : "Показать форму"}
             </Button>
           </div>
 
-          {showAddPlaceForm ? <AddPlaceForm cityId={this.cityId} onToggleShowPlaceForm={this.onToggleShowPlaceForm} /> : ""}
+          {showAddPlaceForm ? <AddPlaceForm cityId={this.cityId} /> : ""}
 
-          {places.map((place, idx) => {
+          {this.places.map((place, idx) => {
             return <Place key={idx} {...place} cityId={this.cityId} />;
           })}
         </div>
@@ -120,4 +118,5 @@ class Item extends Component {
   }
 }
 
-export default connect()(Item);
+// export default connect()(Item);
+export default Item;

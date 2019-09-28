@@ -10,7 +10,7 @@ import {
   VISIBLE_EDIT_FORM
 } from "./types";
 
-const cityReducer = (state = [], action) => {
+const citiesReducer = (state = [], action) => {
   switch (action.type) {
     case GET_CITYS:
       return action.data;
@@ -82,6 +82,6 @@ const editPlaceForm = (state = false, action) => {
 };
 
 export default combineReducers({
-  data: cityReducer,
+  cities: citiesReducer,
   editPlaceForm: editPlaceForm
 });

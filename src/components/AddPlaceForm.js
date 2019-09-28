@@ -6,7 +6,7 @@ import { v4 } from "uuid";
 
 import { addPlace } from "../store/actions";
 
-const AddPlaceForm = ({ dispatch, cityId }) => {
+const AddPlaceForm = ({ dispatch, cityId, onToggleShowPlaceForm }) => {
   let _namePlace, _аddress, _phone, _email, _latitude, _longitude;
 
   const onAddPlace = () => {
@@ -32,6 +32,7 @@ const AddPlaceForm = ({ dispatch, cityId }) => {
     _longitude.handleReset();
 
     dispatch(addPlace(place, cityId));
+    onToggleShowPlaceForm()
   };
 
   return (

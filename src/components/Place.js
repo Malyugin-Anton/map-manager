@@ -9,18 +9,29 @@ const Place = ({
   placeId,
   namePlace,
   аddress,
+  schedule,
+  site,
   contacts,
   coordinate,
   dispatch,
   editPlaceForm
 }) => {
-  let _namePlace, _аddress, _phone, _email, _latitude, _longitude;
+  let _namePlace,
+    _аddress,
+    _schedule,
+    _site,
+    _phone,
+    _email,
+    _latitude,
+    _longitude;
 
   const onEditPlace = () => {
     const place = {
       placeId: placeId,
       namePlace: _namePlace.state.value,
       аddress: _аddress.state.value,
+      schedule: _schedule.state.value,
+      site: _site.state.value,
       contacts: {
         phone: _phone.state.value,
         email: _email.state.value
@@ -33,6 +44,8 @@ const Place = ({
 
     _namePlace.handleReset();
     _аddress.handleReset();
+    _schedule.handleReset();
+    _site.handleReset();
     _phone.handleReset();
     _email.handleReset();
     _latitude.handleReset();
@@ -97,6 +110,29 @@ const Place = ({
             )}
           </p>
         </div>
+
+        <div className="item-content-block">
+          <Divider orientation="left">Сайт</Divider>
+          <p>
+            {editPlaceForm ? (
+              <Input defaultValue={site} ref={input => (_site = input)} />
+            ) : (
+              site
+            )}
+          </p>
+        </div>
+
+        <div className="item-content-block">
+          <Divider orientation="left">График работы</Divider>
+          <p>
+            {editPlaceForm ? (
+              <Input defaultValue={schedule} ref={input => (_schedule = input)} />
+            ) : (
+              schedule
+            )}
+          </p>
+        </div>
+
         <div className="item-content-block">
           <Divider orientation="left">Координаты</Divider>
           <p>

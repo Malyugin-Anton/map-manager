@@ -7,7 +7,6 @@ import AddPlaceForm from "./AddPlaceForm";
 
 class Item extends Component {
   constructor(props) {
-    console.log('Item');
     super(props);
     this._cityName = "";
     this.dispatch = props.dispatch;

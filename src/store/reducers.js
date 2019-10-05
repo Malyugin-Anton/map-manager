@@ -21,6 +21,8 @@ const citiesReducer = (state = [], action) => {
         ...state.map(el => {
           if (el.cityId === action.cityId) {
             el.data.cityName = action.cityName;
+            el.data.cityCoordinate.latitude = action.cityLatitude;
+            el.data.cityCoordinate.longitude = action.cityLongitude;
           }
 
           return el;

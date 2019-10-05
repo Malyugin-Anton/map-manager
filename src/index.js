@@ -17,6 +17,10 @@ import "./index.css";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
+store.subscribe(
+  () => console.log(store.getState())
+)
+
 store.dispatch(getCities());
 
 ReactDOM.render(

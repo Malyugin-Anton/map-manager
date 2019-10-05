@@ -22,6 +22,11 @@ const AddCityForm = ({ dispatch }) => {
         cityId: v4(),
         data: {
           cityName: _cityName.state.value,
+          cityCoordinate: {
+            latitude: null,
+            longitude: null
+          },
+          zoom: 10,
           places: []
         }
       })

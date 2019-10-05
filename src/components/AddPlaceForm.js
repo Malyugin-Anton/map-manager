@@ -7,20 +7,29 @@ import { v4 } from "uuid";
 import { addPlace } from "../store/actions";
 
 const AddPlaceForm = ({ dispatch, cityId, onToggleShowPlaceForm }) => {
-  let _namePlace, _аddress, _phone, _email, _latitude, _longitude;
+  let _namePlace,
+    _аddress,
+    _schedule,
+    _site,
+    _phone,
+    _email,
+    _latitude,
+    _longitude;
 
   const onAddPlace = () => {
     const place = {
       placeId: v4(),
-      namePlace: _namePlace.state.value,
-      аddress: _аddress.state.value,
+      namePlace: _namePlace.state.value || "",
+      аddress: _аddress.state.value || "",
+      schedule: _schedule.state.value || "",
+      site: _site.state.value || "",
       contacts: {
-        phone: _phone.state.value,
-        email: _email.state.value
+        phone: _phone.state.value || "",
+        email: _email.state.value || ""
       },
       coordinate: {
-        latitude: _latitude.state.value,
-        longitude: _longitude.state.value
+        latitude: _latitude.state.value || "",
+        longitude: _longitude.state.value || ""
       }
     };
 
@@ -32,7 +41,7 @@ const AddPlaceForm = ({ dispatch, cityId, onToggleShowPlaceForm }) => {
     _longitude.handleReset();
 
     dispatch(addPlace(place, cityId));
-    onToggleShowPlaceForm()
+    onToggleShowPlaceForm();
   };
 
   return (
@@ -43,7 +52,10 @@ const AddPlaceForm = ({ dispatch, cityId, onToggleShowPlaceForm }) => {
           <p className="item-group">
             <span className="item-group-label">Место:</span>
             <span className="item-group-input">
-              <Input ref={input => (_namePlace = input)} placeholder="Place" />
+              <Input
+                ref={input => (_namePlace = input)}
+                placeholder="Введите место"
+              />
             </span>
           </p>
         </div>
@@ -52,7 +64,10 @@ const AddPlaceForm = ({ dispatch, cityId, onToggleShowPlaceForm }) => {
           <p className="item-group">
             <span className="item-group-label">Адрес:</span>
             <span className="item-group-input">
-              <Input ref={input => (_аddress = input)} placeholder="Адрес" />
+              <Input
+                ref={input => (_аddress = input)}
+                placeholder="Введите Адрес"
+              />
             </span>
           </p>
         </div>
@@ -61,22 +76,58 @@ const AddPlaceForm = ({ dispatch, cityId, onToggleShowPlaceForm }) => {
           <p className="item-group">
             <span className="item-group-label">Телефон:</span>
             <span className="item-group-input">
-              <Input ref={input => (_phone = input)} placeholder="Phone" />
+              <Input
+                ref={input => (_phone = input)}
+                placeholder="Введите телефон"
+              />
             </span>
           </p>
           <p className="item-group">
             <span className="item-group-label">Email:</span>
             <span className="item-group-input">
-              <Input ref={input => (_email = input)} placeholder="Email" />
+              <Input
+                ref={input => (_email = input)}
+                placeholder="Введите email"
+              />
             </span>
           </p>
         </div>
+
+        <div className="item-content-block">
+          <Divider orientation="left">Сайт</Divider>
+          <p className="item-group">
+            <span className="item-group-label">Адрес сайта:</span>
+            <span className="item-group-input">
+              <Input
+                ref={input => (_site = input)}
+                placeholder="Введите адрес сайта"
+              />
+            </span>
+          </p>
+        </div>
+
+        <div className="item-content-block">
+          <Divider orientation="left">График работы</Divider>
+          <p className="item-group">
+            <span className="item-group-label">График работы:</span>
+            <span className="item-group-input">
+              <Input
+                ref={input => (_schedule = input)}
+                placeholder="Введите график работы"
+              />
+            </span>
+          </p>
+        </div>
+
         <div className="item-content-block">
           <Divider orientation="left">Координаты</Divider>
           <p className="item-group">
             <span className="item-group-label">Широта:</span>
             <span className="item-group-input">
-              <Input ref={input => (_latitude = input)} placeholder="Широта" />
+              <Input
+                ref={input => (_latitude = input)}
+                placeholder="Введите широту"
+              />
             </span>
           </p>
           <p className="item-group">
@@ -84,7 +135,7 @@ const AddPlaceForm = ({ dispatch, cityId, onToggleShowPlaceForm }) => {
             <span className="item-group-input">
               <Input
                 ref={input => (_longitude = input)}
-                placeholder="Долгота"
+                placeholder="Введите долготу"
               />
             </span>
           </p>

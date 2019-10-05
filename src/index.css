@@ -64,7 +64,49 @@ ul {
 
 .item-heading .item-actions__btn-group {
   margin-left: auto;
-  margin-right: 10px;
+  margin-right: 15px;
+}
+
+.item-city-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.item-city-info__inputs {
+  flex-basis: 100%;
+  padding-right: 20px;
+  display: flex;
+}
+
+.item-city-info__col {
+  margin-right: 20px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.item-city-info__col:last-child {
+  margin-right: 0;
+}
+
+.item-city-info__col .title {
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+.item-city-info__btns {
+  display: flex;
+}
+
+.item-city-info__btn {
+  margin-left: 15px;
+  justify-content: flex-end;
+}
+
+.item-city-info__btn:last-child {
+  margin-right: 0;
 }
 
 .item-wrap {
@@ -75,13 +117,9 @@ ul {
   display: none;
 }
 
-.item-btn {
-  margin: 20px auto;
-}
+.item-btn {}
 
-.item-inner {
-
-}
+.item-inner {}
 
 .item-content {
   padding: 0 15px;
@@ -122,10 +160,6 @@ ul {
   max-width: 300px;
 }
 
-.item-group-btn {
-  margin-top: 5px;
-}
-
 .item-actions {
   padding: 5px 15px;
   border-top: 1px solid #0000003b;
@@ -138,7 +172,7 @@ ul {
 }
 
 .item-actions__btn {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .item-actions__btn:first-child {

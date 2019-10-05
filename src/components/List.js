@@ -8,14 +8,11 @@ import { Empty } from "antd";
 import { editCity, deleteCity } from "../store/actions";
 
 const List = ({ cities, dispatch }) => {
-  console.log("LIST");
-  console.log("  - cities ", cities);
-
-  const onEditCity = (cityId, cityName) => {
-    dispatch(editCity(cityId, cityName));
+  const onEditCity = (cityId, cityName, cityLatitude, cityLongitude) => {
+    dispatch(editCity(cityId, cityName, cityLatitude, cityLongitude));
   };
 
-  const onDeleteCity = (cityId) => {
+  const onDeleteCity = cityId => {
     dispatch(deleteCity(cityId));
   };
 
@@ -26,7 +23,15 @@ const List = ({ cities, dispatch }) => {
           <Empty />
         ) : (
           cities.map((el, idx) => {
-            return <Item key={idx} onEditCity={onEditCity} onDeleteCity={onDeleteCity} cityId={el.cityId} data={el.data} />;
+            return (
+              <Item
+                key={idx}
+                onEditCity={onEditCity}
+                onDeleteCity={onDeleteCity}
+                cityId={el.cityId}
+                data={el.data}
+              />
+            );
           })
         )}
       </ul>

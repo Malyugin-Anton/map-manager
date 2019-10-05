@@ -29,11 +29,13 @@ export const addCitySuccess = data => {
   };
 };
 
-export const editedCitySuccess = (cityId, cityName) => {
+export const editedCitySuccess = (cityId, cityName, cityLatitude, cityLongitude) => {
   return {
     type: EDIT_CITY,
     cityId,
-    cityName
+    cityName,
+    cityLatitude,
+    cityLongitude
   };
 };
 
@@ -106,7 +108,7 @@ export const addCity = data => {
   };
 };
 
-export const editCity = (cityId, cityName) => {
+export const editCity = (cityId, cityName, cityLatitude, cityLongitude) => {
   return dispatch => {
     const db = firebase.firestore().collection("cities");
 
@@ -116,13 +118,17 @@ export const editCity = (cityId, cityName) => {
         let dbData = doc.data();
 
         dbData.cityName = cityName;
+        dbData.cityCoordinate = {
+          latitude: cityLatitude,
+          longitude: cityLongitude
+        }
 
         // Записываем то что взяли с базы + наши дополнения
         db.doc(cityId)
           .set(dbData)
           .then(() => {
             console.log("edited city Success");
-            dispatch(editedCitySuccess(cityId, cityName));
+            dispatch(editedCitySuccess(cityId, cityName, cityLatitude, cityLongitude));
           });
       });
   };
@@ -155,6 +161,7 @@ export const addPlace = (data, cityId) => {
 
         const newData = {
           cityName: dbData.cityName,
+          cityCoordinate: dbData.cityCoordinate,
           places: [...dbData.places, data]
         };
 
@@ -207,7 +214,6 @@ export const editPlace = (placeData, cityId, placeId) => {
       .get()
       .then(doc => {
         dbData = doc.data();
-
         const editedPlace = dbData.places.map(place =>
           place.placeId === placeId ? placeData : place
         );

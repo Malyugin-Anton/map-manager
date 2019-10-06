@@ -9,7 +9,6 @@ const Place = ({
   placeId,
   namePlace,
   аddress,
-  schedule,
   site,
   contacts,
   coordinate,
@@ -18,7 +17,6 @@ const Place = ({
 }) => {
   let _namePlace,
     _аddress,
-    _schedule,
     _site,
     _phone,
     _email,
@@ -30,7 +28,6 @@ const Place = ({
       placeId: placeId,
       namePlace: _namePlace.state.value,
       аddress: _аddress.state.value,
-      schedule: _schedule.state.value,
       site: _site.state.value,
       contacts: {
         phone: _phone.state.value,
@@ -44,7 +41,6 @@ const Place = ({
 
     _namePlace.handleReset();
     _аddress.handleReset();
-    _schedule.handleReset();
     _site.handleReset();
     _phone.handleReset();
     _email.handleReset();
@@ -118,17 +114,6 @@ const Place = ({
               <Input defaultValue={site} ref={input => (_site = input)} />
             ) : (
               site
-            )}
-          </p>
-        </div>
-
-        <div className="item-content-block">
-          <Divider orientation="left">График работы</Divider>
-          <p>
-            {editPlaceForm ? (
-              <Input defaultValue={schedule} ref={input => (_schedule = input)} />
-            ) : (
-              schedule
             )}
           </p>
         </div>

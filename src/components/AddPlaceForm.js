@@ -9,7 +9,6 @@ import { addPlace } from "../store/actions";
 const AddPlaceForm = ({ dispatch, cityId, onToggleShowPlaceForm }) => {
   let _namePlace,
     _аddress,
-    _schedule,
     _site,
     _phone,
     _email,
@@ -21,7 +20,6 @@ const AddPlaceForm = ({ dispatch, cityId, onToggleShowPlaceForm }) => {
       placeId: v4(),
       namePlace: _namePlace.state.value || "",
       аddress: _аddress.state.value || "",
-      schedule: _schedule.state.value || "",
       site: _site.state.value || "",
       contacts: {
         phone: _phone.state.value || "",
@@ -101,19 +99,6 @@ const AddPlaceForm = ({ dispatch, cityId, onToggleShowPlaceForm }) => {
               <Input
                 ref={input => (_site = input)}
                 placeholder="Введите адрес сайта"
-              />
-            </span>
-          </p>
-        </div>
-
-        <div className="item-content-block">
-          <Divider orientation="left">График работы</Divider>
-          <p className="item-group">
-            <span className="item-group-label">График работы:</span>
-            <span className="item-group-input">
-              <Input
-                ref={input => (_schedule = input)}
-                placeholder="Введите график работы"
               />
             </span>
           </p>
